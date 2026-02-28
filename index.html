@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PathPilot | Career Guidance Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-a"></div>
+    <div class="bg-shape bg-shape-b"></div>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">FSAD-PS24</p>
+        <h1>PathPilot Career Guidance & Counseling</h1>
+        <p class="small">Simple workflow: 1) Fill profile 2) Explore careers 3) Book a session</p>
+      </div>
+      <div class="role-toggle" role="tablist" aria-label="Select role">
+        <button id="studentViewBtn" class="active" aria-selected="true">Student</button>
+        <button id="adminViewBtn" aria-selected="false">Admin</button>
+      </div>
+    </header>
+
+    <p id="globalMessage" class="global-message" aria-live="polite"></p>
+
+    <main class="layout">
+      <aside class="card profile-card">
+        <h2>Step 1: Your Profile</h2>
+        <p>Pick a few interests and skills. We will show your best-fit career options.</p>
+        <form id="profileForm" class="form-stack">
+          <label>
+            Student Name
+            <input id="nameInput" type="text" placeholder="Enter your name" required />
+          </label>
+          <label>
+            Interests (hold Ctrl/Cmd to choose multiple)
+            <select id="interestsSelect" multiple></select>
+          </label>
+          <label>
+            Skills (hold Ctrl/Cmd to choose multiple)
+            <select id="skillsSelect" multiple></select>
+          </label>
+          <button type="submit">Save Profile</button>
+        </form>
+        <div id="recommendationSummary" class="recommendation-summary"></div>
+      </aside>
+
+      <section id="studentSection" class="panel active" aria-live="polite">
+        <article class="card">
+          <div class="card-head">
+            <h2>Step 2: Explore Career Paths</h2>
+            <input id="careerSearch" type="search" placeholder="Search careers" />
+          </div>
+          <div id="careerList" class="list"></div>
+        </article>
+
+        <article class="card">
+          <h2>Step 3: Book a Counseling Session</h2>
+          <form id="sessionForm" class="form-stack">
+            <label>
+              Career Path
+              <select id="careerPathSelect"></select>
+            </label>
+            <label>
+              Counselor
+              <select id="counselorSelect"></select>
+            </label>
+            <label>
+              Date
+              <input id="sessionDate" type="date" required />
+            </label>
+            <label>
+              Time
+              <input id="sessionTime" type="time" required />
+            </label>
+            <button type="submit">Book Session</button>
+          </form>
+          <div id="sessionStatus" class="status"></div>
+        </article>
+
+        <div class="grid two">
+          <article class="card">
+            <h2>Resources</h2>
+            <div id="resourceListStudent" class="list"></div>
+          </article>
+          <article class="card">
+            <h2>Guidance Videos</h2>
+            <div class="videos" id="videoContainer"></div>
+          </article>
+        </div>
+
+        <article class="card">
+          <h2>My Upcoming Sessions</h2>
+          <div id="mySessions" class="list"></div>
+        </article>
+      </section>
+
+      <section id="adminSection" class="panel" aria-live="polite">
+        <div class="grid two">
+          <article class="card">
+            <h2>Manage Resources</h2>
+            <form id="resourceForm" class="form-stack compact">
+              <label>
+                Title
+                <input id="resourceTitle" type="text" placeholder="Resource title" required />
+              </label>
+              <label>
+                Category
+                <input id="resourceCategory" type="text" placeholder="e.g. Technology" required />
+              </label>
+              <label>
+                Link
+                <input id="resourceLink" type="url" placeholder="https://..." required />
+              </label>
+              <button type="submit">Add Resource</button>
+            </form>
+            <div id="resourceListAdmin" class="list"></div>
+          </article>
+
+          <article class="card">
+            <h2>Assign Counselor</h2>
+            <form id="connectForm" class="form-stack compact">
+              <label>
+                Student Name
+                <input id="connectStudent" type="text" placeholder="Student name" required />
+              </label>
+              <label>
+                Counselor
+                <select id="connectCounselor"></select>
+              </label>
+              <button type="submit">Assign</button>
+            </form>
+            <div id="connectionsList" class="list"></div>
+          </article>
+        </div>
+
+        <article class="card">
+          <h2>Engagement Dashboard</h2>
+          <div class="stats" id="statsGrid"></div>
+        </article>
+      </section>
+    </main>
+
+    <template id="careerTemplate">
+      <article class="career-item">
+        <h3></h3>
+        <p class="meta"></p>
+        <p class="desc"></p>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
